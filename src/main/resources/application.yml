@@ -1,0 +1,40 @@
+
+
+server:
+  port: 8080
+  servlet:
+    jsp:
+      init-parameters:
+        development: true
+    context-path: /hotel
+
+# Spring MVC
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 503353364
+    url: jdbc:mysql://localhost:3306/work?characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&useSSL=false
+  mvc:
+    view:
+      prefix: /WEB-INF/page/
+      suffix: .jsp
+    # static-path-pattern: /static/**
+
+    hiddenmethod:
+      filter:
+        enabled: true
+
+
+# Mybatis-Plus
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml # Mapper XML
+  type-aliases-package: com.dj.demo.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
