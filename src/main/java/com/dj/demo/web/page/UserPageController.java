@@ -26,6 +26,13 @@ public class UserPageController {
     }
 
 
+    /**
+     *  去注册
+     */
+    @RequestMapping("toAdd")
+    public String toAdd(){
+        return "user/add";
+    }
 
 
 
