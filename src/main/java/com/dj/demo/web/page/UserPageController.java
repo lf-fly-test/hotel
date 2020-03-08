@@ -1,5 +1,7 @@
 package com.dj.demo.web.page;
 
+import com.dj.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,4 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/user/")
 public class UserPageController {
+
+    @Autowired
+    private UserService userService;
+
+    /**
+     * 去登录
+     */
+    @RequestMapping("toLogin")
+    public String toLogin(){
+        return "user/login";
+    }
+
+
+
+
+
+
+
 }

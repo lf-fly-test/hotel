@@ -84,4 +84,12 @@ public class User {
      * @Date: 2020/3/6
      */
     private Integer vipPoints;
+
+
+    /**
+     * @MethodName: 状态 1存在  0伪删除
+     * @author Mr.wang
+     * @date 2020/3/7--20:08
+     */
+    private Integer is_del;
 }
