@@ -8,18 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/res/layer/layer.js"></script>
+<script src="<%=request.getContextPath()%>/res/validate/jquery.validate.js"></script>
+<script src="https://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
 <html>
 <head>
     <title>登陆</title>
 </head>
 <body>
 
-<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583594308426&di=6682cf62004def14c5c2b3245c8935ef&imgtype=0&src=http%3A%2F%2Fcdn-ly.mama.cn%2F251da825b837b82f57e92e51d256623d.jpg" alt="" style="width: 100%;height: 100%;object-fit: cover">
+<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583594308426&di=6682cf62004def14c5c2b3245c8935ef&imgtype=0&src=http%3A%2F%2Fcdn-ly.mama.cn%2F251da825b837b82f57e92e51d256623d.jpg" alt="" style="width: 100%;height: 80%;object-fit: cover">
 <div align="center">
     <h1>欢迎登陆<font color="red">点金</font><font color="#1e90ff">五星级</font>宾馆</h1>
     <form id = "fm">
-        用户名<input type="text" name="userName">  <input type ="button" value="登陆" onclick="login()"><br/>
-        密码&nbsp;&nbsp;&nbsp;<input type = "text" name = "userPwd"> <input type ="button" value="注册" onclick="toAdd()"><br/>
+        用 户 名 <input type="text" name="userName">   <input type ="button" value="登陆" onclick="login()">    <input type ="button" value="注册" onclick="toAdd()"><br/><br/>
+        密&nbsp;&nbsp;&nbsp;码 <input type = "text" name = "userPwd"> <input type ="button" value="  忘 记 密 码  " onclick="toforget()"> <br/>
+
     </form>
 </div>
 </body>
@@ -33,7 +36,6 @@
             shade: [0.8, '#393D49']
         }, function () {
             //do something
-
             $.post("<%=request.getContextPath()%>/user/login ",
                 $("#fm").serialize(),
                 function (data) {
@@ -59,6 +61,21 @@
             shade: 0.3,
             area: ['380px', '80%'],
             content: '<%=request.getContextPath()%>/user/toAdd' //iframe的url
+        });
+    }
+
+    //新增
+    function toforget(){
+        layer.open({
+            type: 2,
+            title: [
+                '忘记密码',
+                'background-color:#8DCE16; color:#fff;'
+            ],
+            shadeClose: true,
+            shade: 0.3,
+            area: ['380px', '80%'],
+            content: '<%=request.getContextPath()%>/user/toforget' //iframe的url
         });
     }
 </script>

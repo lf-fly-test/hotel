@@ -126,7 +126,7 @@ public class SystemConstant {
     /**
      * 输入有误
      */
-    public static final String INPUT_ERROR  = "输入有误或健康证未尚未通过审核";
+    public static final String INPUT_ERROR  = "输入有误";
 
     /**
      * 登录成功

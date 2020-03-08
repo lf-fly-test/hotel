@@ -35,6 +35,15 @@ public class UserPageController {
     }
 
 
+    /**
+     *  去找回密码页面
+     */
+    @RequestMapping("toforget")
+    public String toforget(){
+        return "user/forget";
+    }
+
+
 
 
 
