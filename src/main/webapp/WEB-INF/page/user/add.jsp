@@ -40,10 +40,6 @@
                             }
                         }
                     },
-                    nickname:{
-                        required:true,
-                        notEqu:true
-                    },
                     password:{
                         required:true,
                         rangelength:[3,18],
@@ -113,10 +109,6 @@
                         maxlength:"最多四个字",
                         remote:"姓名已存在"
                     },
-                    nickname:{
-                        required:"请填写工名"
-
-                    },
                     password:{
                         required:"请填写密码",
                         rangelength:"长度不符合规则",
@@ -167,7 +159,6 @@
                         shade: [0.8, '#393D49']
                     }, function () {
                         //do something
-
                         $.post("<%=request.getContextPath()%>/user/add ",
                             $("#fm").serialize(),
                             function (data) {
@@ -190,11 +181,6 @@
                 return userPhone.test(value)
             }, "请正确填写您的手机号码");
 
-        // 判断用户名昵称不同
-        jQuery.validator.addMethod("notEqu",
-            function(value, element) {
-                return value != $("#userName").val();
-            }, "用户名工名需不同!");
 
     </script>
     <style>
@@ -206,20 +192,18 @@
 <body>
 <form id="fm">
     姓名<input type="text" name="userName" id="userName" /><br>
-    工名<input type="text" name="nickname" id="nickname" /><br><br>
-    密码<input type="text" name="password" id="pwd"/><br>
+    密码<input type="text" name="userPwd" id="pwd"/><br>
     确认密码<input type="text" name="userPwd1" /><br><br>
-    手机<input type="text" name="phone" id="userPhone" /><br>
-    邮箱<input type="text" name="email" id="email"/><br><br>
+    手机<input type="text" name="userPhone" id="userPhone" /><br>
+    邮箱<input type="text" name="userEmail" id="email"/><br><br>
     角色<br>
-        <input type="radio" name="roleId" value="1" >用户
-        <input type="radio" name="roleId" value="2" >管理员
+        <input type="radio" name="userLevel" value="1" >用户
+        <input type="radio" name="userLevel" value="2" >管理员
     <div id="levelError" class="error" ></div><br><br>
     性别<br>
-        <input type="radio" name="sex" value="1" checked>男
-        <input type="radio" name="sex" value="2">女
+        <input type="radio" name="userSex" value="1" checked>男
+        <input type="radio" name="userSex" value="2">女
          <div id="sex" class="error" ></div>
-        <input type="hidden" name="status" value="-1">
         <input type="hidden" name="isDel" value="1"><br>
     <input type="submit" value="注册" />
 </form>
