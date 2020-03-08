@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dj.demo.mapper.RoomMapper">
+
+    <sql id="Room_All">
+        id,room,room_type,room_price,room_status,username
+
+    </sql>
+
+    <update id="update">
+        update
+        room
+        set
+        room_status = #{roomStatus}
+
+    </update>
+    <select id="findRoomAll" resultType="com.dj.demo.pojo.Room">
+        SELECT
+            <include refid="Room_All"/>
+        FROM
+            room
+         <where>
+             <if test="roomType !=null and roomType != '' ">
+                 room_type like "%"#{roomType}"%"
+             </if>
+         </where>
+    </select>
+
+
+
+</mapper>
