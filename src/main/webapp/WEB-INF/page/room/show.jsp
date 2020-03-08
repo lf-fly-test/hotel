@@ -13,7 +13,7 @@
     <title>酒店房间查看</title>
 </head>
 <body>
-<form>
+<form id="fm">
     房间类型:<input type="text" name="roomType">
     <input type="button" value="查询" onclick="search()">
 
@@ -34,13 +34,14 @@
 </form>
 </body>
 <script>
+    var  level= ${user.userLevel}
 
     $(function () {
             search();
     });
     function search() {
         $.post("<%=request.getContextPath()%>/room/show",
-                {},
+                $("#fm").serialize(),
                 function (data) {
                      var html ="";
                     for (let i = 0; i <data.data.list.length ; i++) {
@@ -53,7 +54,10 @@
                         html+="<td>"+list.roomStatus+"</td>";
                         html+="<td>"+list.username+"</td>";
                         html+="<td><input type='button' value='预约' onclick='subscribe("+list.id+")'></td>";
-                        html+="<td><input type='button' value='审核' onclick='audit("+list.id+")'></td>";
+                        if (level == 2){
+                            html+="<td><input type='button' value='审核' onclick='audit("+list.id+")'></td>";
+                        }
+
 
                         html +="</tr>";
                     }
