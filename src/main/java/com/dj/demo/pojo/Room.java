@@ -38,6 +38,12 @@ public class Room {
      * @Date: 2020/3/6
      */
     private Integer roomStatus;
+
+
+    /**
+     * 房间价格
+     */
+    private Double roomPrice;
     
     /***
      * @MethodName: 用户名
