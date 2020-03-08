@@ -37,7 +37,7 @@
 
     $(function () {
             search();
-    })
+    });
     function search() {
         $.post("<%=request.getContextPath()%>/room/show",
                 {},
@@ -60,8 +60,8 @@
                     $("#tb").html(html);
         })
     }
-    function subscribe() {
-        $.post("<%=request.getContextPath()%>/room/subscribe",
+    function subscribe(id) {
+        $.post("<%=request.getContextPath()%>/room/update",
                 {"id":id,"roomType":1},
                 function (data) {
                 if(data.code==200){
@@ -72,8 +72,8 @@
         })
 
     }
-    function audit() {
-        $.post("<%=request.getContextPath()%>/room/subscribe",
+    function audit(id) {
+        $.post("<%=request.getContextPath()%>/room/update",
             {"id":id,"roomType":2},
             function (data) {
                 if(data.code==200){
