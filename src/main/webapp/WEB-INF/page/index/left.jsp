@@ -13,15 +13,15 @@
 <body align="center"  lay-size="10px">
 <%--员工可看--%>
 <c:if test="${user.id!=1}">
-    <a href="<%=request.getContextPath()%>/user/toLeague" target="right"><font color="#ff69b4">餐厅加盟</font></a><br/><br/><br/>
+
 </c:if>
 <c:if test="${user.id!=1}">
-    <a href="https://map.baidu.com/search/%E4%B8%89%E5%AE%B6%E4%B9%90%E6%B0%B4%E9%A5%BA/@12474124.125,4473981,19z?querytype=inf&uid=dfaf4b5ecd27079238e4a666&wd=%E4%B8%89%E5%AE%B6%E4%B9%90%E6%B0%B4%E9%A5%BA&all=1&c=327&provider=pc-aladin&da_src=shareurl" target="right"><font color="#ff69b4">总部地址信息</font></a><br/>
+
 </c:if>
 <br/><br/>
 <%--老板可看--%>
 <c:if test="${user.id==1}">
-    <a href="<%=request.getContextPath()%>/user/toLeagueShow" target="right"><font color="#ff69b4">加盟意向展示</font></a>
+
 <br/><br/>
 <div id="demotree" class="ztree"></div>
 </c:if>

@@ -67,7 +67,19 @@ public class UserController {
     }
 
 
-
+    /**
+     * 验证是否有用户
+     * @author Mr.wang
+     */
+    @RequestMapping("findByName")
+    public boolean findByName(User user){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.or(i -> i.eq("user_name",user.getUserName())
+                .or().eq("user_email",user.getUserEmail())
+                .or().eq("user_phone",user.getUserPhone()));
+        User user1 = userService.getOne(queryWrapper);
+        return user1 == null ? true : false;
+    }
 
 
 }
