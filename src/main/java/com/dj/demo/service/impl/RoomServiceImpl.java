@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @ClassName RoomServiceImpl
  * @Description: TODO
@@ -19,4 +21,16 @@ public class RoomServiceImpl extends ServiceImpl<RoomMapper, Room> implements Ro
 
     @Autowired
     private RoomMapper roomMapper;
+
+    @Override
+    public List<Room> findRoomAll(Room room) throws Exception {
+        return roomMapper.findRoomAll(room);
+    }
+
+
+
+    @Override
+    public void update(Room room) throws Exception {
+        roomMapper.update(room);
+    }
 }
