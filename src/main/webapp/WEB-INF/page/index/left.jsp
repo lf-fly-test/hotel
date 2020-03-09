@@ -11,6 +11,9 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/res/zTree_v3/js/jquery.ztree.all.min.js"></script>
 </head>
 <body align="center"  lay-size="10px">
+
+<a href="<%=request.getContextPath()%>/room/toShow" target="right">房间信息查询</a>
+<%--    <a href="<%=request.getContextPath()%>/user/toShow" target="right">用户管理展示</a>--%>
 <%--员工可看--%>
 <c:if test="${user.id!=1}">
 
