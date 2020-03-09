@@ -21,7 +21,7 @@
     <h1>欢迎登陆<font color="red">点金</font><font color="#1e90ff">五星级</font>宾馆</h1>
     <form id = "fm">
         用 户 名 <input type="text" name="userName">   <input type ="button" value="登陆" onclick="login()">    <input type ="button" value="注册" onclick="toAdd()"><br/><br/>
-        密&nbsp;&nbsp;&nbsp;码 <input type = "text" name = "userPwd"> <input type ="button" value="  忘 记 密 码  " onclick="toforget()"> <br/>
+        密&nbsp;&nbsp;&nbsp;码 <input type = "text" name = "userPwd"> <input type ="button" value="邮箱登录" onclick="toforget()"> <input type ="button" value="忘记密码" onclick="tophone()"><br/>
 
     </form>
 </div>
@@ -76,6 +76,20 @@
             shade: 0.3,
             area: ['380px', '80%'],
             content: '<%=request.getContextPath()%>/user/toforget' //iframe的url
+        });
+    }
+    //新增
+    function tophone(){
+        layer.open({
+            type: 2,
+            title: [
+                '忘记密码',
+                'background-color:#8DCE16; color:#fff;'
+            ],
+            shadeClose: true,
+            shade: 0.3,
+            area: ['380px', '80%'],
+            content: '<%=request.getContextPath()%>/user/tophone' //iframe的url
         });
     }
 </script>

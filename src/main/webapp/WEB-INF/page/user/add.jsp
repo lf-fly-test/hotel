@@ -51,7 +51,7 @@
                         digits:true,
                         equalTo:"#pwd"
                     },
-                    email:{
+                    userEmail:{
                         required:true,
                         email:true,
                         remote: {//ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}
@@ -59,7 +59,7 @@
                             url: "<%=request.getContextPath()%>/user/findByName",
                             data:{
                                 userName:function() {
-                                    return $("#email").val();
+                                    return $("#userEmail").val();
                                 },
                                 dataType:"json",
                                 dataFilter:function(data,type){
@@ -73,7 +73,7 @@
                             }
                         }
                     },
-                    phone:{
+                    userPhone:{
                         required:true,
                         isPhone:true,
                         remote: {//ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}
@@ -120,12 +120,12 @@
                         equalTo:"两次密码不统一",
                         digits:"必须是整数"
                     },
-                    email:{
+                    userEmail:{
                         required:"请填写邮箱",
                         email:"请填写正确格式邮箱",
                         remote:"邮箱已存在"
                     },
-                    phone:{
+                    userPhone:{
                         required:"请填写手机号码",
                         isPhone:"手机号有误",
                         remote:"手机号已存在"
@@ -195,10 +195,8 @@
     密码<input type="text" name="userPwd" id="pwd"/><br>
     确认密码<input type="text" name="userPwd1" /><br><br>
     手机<input type="text" name="userPhone" id="userPhone" /><br>
-    邮箱<input type="text" name="userEmail" id="email"/><br><br>
-    角色<br>
-        <input type="radio" name="userLevel" value="1" >用户
-        <input type="radio" name="userLevel" value="2" >管理员
+    邮箱<input type="text" name="userEmail" id="userEmail"/><br><br>
+        <input type="hidden" name="userLevel" value="1" >
     <div id="levelError" class="error" ></div><br><br>
     性别<br>
         <input type="radio" name="userSex" value="1" checked>男

@@ -36,11 +36,20 @@ public class UserPageController {
 
 
     /**
-     *  去找回密码页面
+     *  去邮箱登录页面
      */
     @RequestMapping("toforget")
     public String toforget(){
         return "user/forget";
+    }
+
+
+    /**
+     *  去手机号登录页面
+     */
+    @RequestMapping("tophone")
+    public String tophone(){
+        return "user/phone";
     }
 
 

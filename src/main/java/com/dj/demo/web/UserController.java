@@ -7,6 +7,7 @@ import com.dj.demo.common.SystemConstant;
 import com.dj.demo.pojo.User;
 import com.dj.demo.service.UserService;
 import com.dj.demo.utils.JavaEmailUtils;
+import com.dj.demo.utils.MessageVerifyUtils;
 import com.dj.demo.utils.PasswordSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -54,7 +55,7 @@ public class UserController {
     }
 
     /**
-     * 员工老板登录
+     * 忘记密码邮箱登录
      * @author Mr.wang
      */
     @RequestMapping("emailLogin")
@@ -120,6 +121,20 @@ public class UserController {
         return user1 == null ? false : true;
     }
 
+    /**
+     * 验证是否有手机号
+     * @author Mr.wang
+     */
+    @RequestMapping("findByPhone")
+    public boolean findByPhone(User user){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.or(i -> i.eq("user_name",user.getUserName())
+                .or().eq("user_email",user.getUserEmail())
+                .or().eq("user_phone",user.getUserPhone()));
+        User user1 = userService.getOne(queryWrapper);
+        return user1 == null ? false : true;
+    }
+
 
     // 邮箱获取验证码
     @RequestMapping("getEmailCode")
@@ -134,6 +149,37 @@ public class UserController {
     }
 
 
+    // 手机号获取验证码
+    @RequestMapping("getCode")
+    public ResultModel<Object> getCode(User user) throws Exception {
+        Integer code = MessageVerifyUtils.getNewcode();
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.or(i -> i.eq("user_phone",user.getUserPhone()));
+        User user1 = userService.getOne(queryWrapper);
+        user1.setCode(String.valueOf(code));
+        userService.updateById(user1);
+        MessageVerifyUtils.sendSms(user1.getUserPhone(), String.valueOf(code));
+        return new ResultModel<Object>().success();
+    }
 
-
+    /**
+     * 忘记密码邮箱登录
+     * @author Mr.wang
+     */
+    @RequestMapping("phoneLogin")
+    public ResultModel<Object> phoneLogin(User user, HttpSession session) throws Exception {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        //用户名/手机号/邮箱+密码登陆
+        queryWrapper.or(i -> i.eq("user_phone", user.getUserPhone()));
+        queryWrapper.eq("code", user.getCode());
+        queryWrapper.eq("is_del", com.dj.demo.common.SystemConstant.YES_STATUS);
+        User user1 = userService.getOne(queryWrapper);
+        // session存放用户信息
+        session.setAttribute("user", user1);
+        if(user1 == null){
+            return new ResultModel<>().error(com.dj.demo.common.SystemConstant.INPUT_ERROR);
+        }
+        userService.updateById(user1);
+        return new ResultModel<>().success(com.dj.demo.common.SystemConstant.SUCCESS);
+    }
 }

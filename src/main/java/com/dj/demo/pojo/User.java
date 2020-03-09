@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import javax.swing.*;
+
 /**
  * @ClassName User
  * @Description: 用户实体类
@@ -92,4 +94,11 @@ public class User {
      * @date 2020/3/7--20:08
      */
     private Integer is_del;
+
+    /**
+     * @MethodName: code验证码
+     * @author Mr.wang
+     * @date 2020/3/7--20:8
+     */
+    private String code;
 }

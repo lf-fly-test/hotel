@@ -70,7 +70,7 @@
         })
 
 
-        //注册
+        //邮箱登录
         $.validator.setDefaults({
             submitHandler: function () {
                 var index = layer.load(1, {shade: 0.3}, {shadeClose: true}); //解决网络延迟的加载重复操作问题
@@ -103,8 +103,8 @@
     <title>Insert title here</title>
 <body>
 <form id="fm">
-    邮  箱：<input type="text" name="userEmail" id="userEmail"><br/>
-    密  码：<input type="text" name="userPwd"><br/>
+    邮  箱：<input type="text" name="userEmail" id="userEmail" placeholder="请输入已绑定的email"><br/>
+    验证码：<input type="text" name="userPwd" placeholder="请输入收到的信息"><br/>
     <input type="button" value="点我验证码发到你邮箱" onclick="getCode()">
     <input type="submit" value="登录" >
 </form>
