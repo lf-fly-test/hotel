@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/res/layer/layer.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/res/layui-v2.5.5/layui/layui.js" charset="utf-8"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/res/layui-v2.5.5/layui/css/layui.css"  media="all">
 <html>
 <head>
     <title>酒店房间查看</title>
@@ -17,7 +19,7 @@
     房间类型:<input type="text" name="roomType">
     <input type="button" value="查询" onclick="search()">
 
-<table>
+<table class="layui-table">
     <tr>
         <td>id</td>
         <td>房间</td>
