@@ -51,10 +51,21 @@
                         html+="<td>"+list.room+"</td>";
                         html+="<td>"+list.roomType+"</td>";
                         html+="<td>"+list.roomPrice+"</td>";
-                        html+="<td>"+list.roomStatus+"</td>";
-                        html+="<td>"+list.username+"</td>";
-                        html+="<td><input type='button' value='预约' onclick='subscribe("+list.id+")'></td>";
-                        if (level == 2){
+                        if (list.roomStatus==0){
+                            html+="<td>空闲</td>"
+                        }
+                        if (list.roomStatus==1){
+                            html+="<td>预约中</td>"
+                        }
+                        if (list.roomStatus==2){
+                            html+="<td>预约成功</td>"
+                        }
+                        html+="<td>"+list.userName+"</td>";
+                        if (level==1 && list.roomStatus==0){
+                            html+="<td><input type='button' value='预约' onclick='subscribe("+list.id+")'></td>";
+                        }
+
+                        if (level == 2 && list.roomStatus==1){
                             html+="<td><input type='button' value='审核' onclick='audit("+list.id+")'></td>";
                         }
 
@@ -66,23 +77,27 @@
     }
     function subscribe(id) {
         $.post("<%=request.getContextPath()%>/room/update",
-                {"id":id,"roomType":1},
+                {"id":id,"roomStatus":1},
                 function (data) {
                 if(data.code==200){
-                    layer.msg("预约成功,请等待审核");
+                    layer.msg("已预约,等待审核");
                     search();
+                }else{
+                    layer.msg(data.msg);
                 }
 
         })
 
     }
     function audit(id) {
-        $.post("<%=request.getContextPath()%>/room/update",
-            {"id":id,"roomType":2},
+        $.post("<%=request.getContextPath()%>/room/updateStatus",
+            {"id":id,"roomStatus":2},
             function (data) {
                 if(data.code==200){
                     layer.msg("审核成功");
                     search();
+                }else{
+                    layer.msg(data.msg);
                 }
 
             })
