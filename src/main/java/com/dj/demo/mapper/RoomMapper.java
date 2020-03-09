@@ -19,4 +19,6 @@ public interface RoomMapper extends BaseMapper<Room> {
 
     void update(Room room) throws DataAccessException;
 
+    void updateStatus(Room room) throws DataAccessException;
+
 }
