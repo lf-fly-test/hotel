@@ -17,4 +17,6 @@ public interface RoomService extends IService<Room> {
 
     void update(Room room) throws Exception;
 
+    void updateStatus(Room room) throws Exception;
+
 }
