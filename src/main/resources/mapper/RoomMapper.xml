@@ -3,7 +3,7 @@
 <mapper namespace="com.dj.demo.mapper.RoomMapper">
 
     <sql id="Room_All">
-        id,room,room_type,room_price,room_status,username
+        id,room,room_type,room_price,room_status,user_name
 
     </sql>
 
@@ -11,7 +11,20 @@
         update
         room
         set
+        room_status = #{roomStatus},
+        user_name = #{userName}
+        where
+        id = #{id}
+
+    </update>
+
+    <update id="updateStatus">
+        update
+        room
+        set
         room_status = #{roomStatus}
+        where
+        id = #{id}
 
     </update>
     <select id="findRoomAll" resultType="com.dj.demo.pojo.Room">
