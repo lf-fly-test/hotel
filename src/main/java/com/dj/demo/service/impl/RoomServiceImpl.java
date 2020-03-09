@@ -33,4 +33,9 @@ public class RoomServiceImpl extends ServiceImpl<RoomMapper, Room> implements Ro
     public void update(Room room) throws Exception {
         roomMapper.update(room);
     }
+
+    @Override
+    public void updateStatus(Room room) throws Exception {
+        roomMapper.updateStatus(room);
+    }
 }
