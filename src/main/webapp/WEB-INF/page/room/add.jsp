@@ -66,8 +66,8 @@
         var html ='<div id="divcalss"> <hr> <input type="button" value="-" onclick="delDiv(this)"/></br>';
 
         html+='用户名：<input type="text" name="roomUserList['+i+'].userName"><br>'
-        html+='性别： <input type="radio" name="roomUserList['+i+'].userSex" value="1" onclick="isShow(this.value,'+i+')">男<br>'
-        html+='性别： <input type="radio" name="roomUserList['+i+'].userSex" value="2" onclick="isShow(this.value,'+i+')">女<br>'
+        html+='性别： <input type="radio" name="roomUserList['+i+'].userSex" value="1" onclick="isShow(this.value,'+i+')">男'
+        html+=' <input type="radio" name="roomUserList['+i+'].userSex" value="2" onclick="isShow(this.value,'+i+')">女<br>'
 
         html+='</div>'
         html+='</div>'
