@@ -12,7 +12,8 @@
 </head>
 <body align="center"  lay-size="10px">
 
-<a href="<%=request.getContextPath()%>/room/toShow" target="right">房间信息查询</a>
+<a href="<%=request.getContextPath()%>/room/toShow" target="right">房间信息查询</a><br>
+<a href="<%=request.getContextPath()%>/user/toAdminShow" target="right">管理员信息管理</a>
 <%--    <a href="<%=request.getContextPath()%>/user/toShow" target="right">用户管理展示</a>--%>
 <%--员工可看--%>
 <c:if test="${user.id!=1}">
@@ -30,7 +31,7 @@
 </c:if>
 </body>
 <script>
-
+/*
     var setting = {
         data: {
             simpleData: {
@@ -64,6 +65,6 @@
                 treeObj.expandAll(true);
             }
         )
-    });
+    });*/
 </script>
 </html>

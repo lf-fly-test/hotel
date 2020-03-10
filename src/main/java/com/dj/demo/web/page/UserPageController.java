@@ -43,7 +43,27 @@ public class UserPageController {
         return "user/forget";
     }
 
+    /***
+     * @MethodName:
+     * @Description: //去管理员展示页面
+     * @Author: bj-lx
+     * @Date: 2020/3/8
+     */
+    @RequestMapping("toAdminShow")
+    public String toAdminShow(){
+        return "user/admin_show";
+    }
 
+    /***
+     * @MethodName:
+     * @Description: //去管理员添加页面
+     * @Author: bj-lx
+     * @Date: 2020/3/8
+     */
+    @RequestMapping("toAdminAdd")
+    public String toAdminAdd (){
+        return "user/add_admin";
+    }
 
 
 

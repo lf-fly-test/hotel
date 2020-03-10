@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName UserController
@@ -86,7 +87,7 @@ public class UserController {
         //注册用户
         String pwd = PasswordSecurityUtil.enCode32(user.getUserPwd());
         user.setUserPwd(pwd);
-        user.setIs_del(SystemConstant.IS_NOT_DEL);
+        user.setIsDel(SystemConstant.IS_NOT_DEL);
         userService.save(user);
         //注册用户角色关联表
         return new ResultModel<>().success(com.dj.demo.common.SystemConstant.SUCCESS);
@@ -131,6 +132,20 @@ public class UserController {
         User user1 = userService.getOne(queryWrapper);
         JavaEmailUtils.sendEmail(user1.getUserEmail(), "您的验证码",user1.getUserPwd());
         return new ResultModel<Object>().success();
+    }
+
+    @RequestMapping("adminShow")
+    public ResultModel<Object> adminShow(){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_level",SystemConstant.LEVEL_ADMINISTRATOR);
+        List<User> userList = userService.list(queryWrapper);
+        return new ResultModel<>().success(userList);
+    }
+
+    @RequestMapping("updateAdminStatus")
+    public ResultModel<Object> updateAdminStatus (User user){
+        userService.updateById(user);
+        return new ResultModel<>().success();
     }
 
 

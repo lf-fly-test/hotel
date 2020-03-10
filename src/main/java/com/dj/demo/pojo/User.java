@@ -91,5 +91,5 @@ public class User {
      * @author Mr.wang
      * @date 2020/3/7--20:08
      */
-    private Integer is_del;
+    private Integer isDel;
 }
