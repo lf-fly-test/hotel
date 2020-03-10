@@ -157,4 +157,8 @@ public class SystemConstant {
      *  撤职
      */
     public static final Integer STATUS_NOT_APPOINT = 2;
+    /***
+     *  无人入住
+     */
+    public static final String isNull = "无人入住";
 }

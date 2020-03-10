@@ -9,6 +9,7 @@ import com.dj.demo.pojo.User;
 import com.dj.demo.service.RoomService;
 
 import com.dj.demo.service.RoomUserService;
+import com.dj.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,10 +34,11 @@ public class RoomController {
     @Autowired
     private RoomUserService roomUserService;
 
-
+    @Autowired
+    private UserService userService;
     @RequestMapping("show")
     public ResultModel show(Room room){
-             Map map = new HashMap();
+        Map map = new HashMap();
         try {
             List<Room> list = roomService.findRoomAll(room);
             map.put("list",list);
@@ -46,8 +48,8 @@ public class RoomController {
             return new ResultModel().error("服务器异常"+e.getMessage());
         }
     }
-        @RequestMapping("update")
-        public ResultModel update(Room room, HttpSession session){
+    @RequestMapping("update")
+    public ResultModel update(Room room, HttpSession session){
         try {
 
             User user = (User) session.getAttribute("user");
@@ -60,7 +62,7 @@ public class RoomController {
         }
     }
     @RequestMapping("updateStatus")
-        public ResultModel updateStatus(Room room ,RoomUser roomUser){
+    public ResultModel updateStatus(Room room ,RoomUser roomUser, User user){
         try {
             //修改状态
             roomService.updateStatus(room);
@@ -68,14 +70,18 @@ public class RoomController {
             QueryWrapper<Room> queryWrapper =new QueryWrapper<>();
             queryWrapper.eq("id",room.getId());
             Room room1 = roomService.getOne(queryWrapper);
+            QueryWrapper<User> queryWrapper2 =new QueryWrapper<>();
+            queryWrapper2.eq("user_name",room1.getUserName());
+            User User1= userService.getOne(queryWrapper2);
             roomUser.setId(null);
             roomUser.setUserName(room1.getUserName());
             roomUser.setRoom(room1.getRoom());
-             roomUser.setRoomType(room1.getRoomType());
+            roomUser.setRoomType(room1.getRoomType());
             roomUser.setStartTime(new Date());
             roomUser.setEndTime(null);
-             roomUser.setRoomStatus(SystemConstant.LEVEL_EMPLOYEE);
+            roomUser.setRoomStatus(SystemConstant.LEVEL_EMPLOYEE);
             roomUser.setIsDel(SystemConstant.IS_NOT_DEL);
+            roomUser.setUserSex(User1.getUserSex());
             roomUserService.save(roomUser);
 
 

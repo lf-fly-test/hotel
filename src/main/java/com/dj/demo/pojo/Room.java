@@ -23,14 +23,14 @@ public class Room {
      * @Date: 2020/3/6
      */
     private String room;
-    
+
     /***
      * @MethodName: 房间类型
      * @Author: bj-lx
      * @Date: 2020/3/6
      */
     private String roomType;
-    
+
     /***
      * @MethodName: 房间状态
      * @Description: // 0空闲  1：预约中  2：预约成功 ，已入住
@@ -44,7 +44,7 @@ public class Room {
      * 房间价格
      */
     private Double roomPrice;
-    
+
     /***
      * @MethodName: 用户名
      * @Author: bj-lx

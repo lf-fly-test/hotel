@@ -40,6 +40,7 @@
                     html += "</td>";
                     html += "<td>"+list.id+"</td>";
                     html += "<td>"+list.userName+"</td>";
+                    html += list.userSex ==1 ? "<td>男</td>" : "<td>女</td>";
                     html += "<td>"+list.room+"</td>";
                     html += "<td>"+list.roomType+"</td>";
                     html += "<td>"+list.roomStatusShow+"</td>";
@@ -60,7 +61,7 @@
 </script>
 <body>
 <form id="fm">
-<input type="hidden" name="room" value="${room}">
+    <input type="hidden" name="room" value="${room}">
 
 </form>
 <table  class="layui-table">
@@ -75,6 +76,7 @@
         <th >√</th>
         <th >编号</th>
         <th >入住人员名称</th>
+        <th >性别</th>
         <th >房间号</th>
         <th >房间类型</th>
         <th >入住状态</th>
