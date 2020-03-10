@@ -9,6 +9,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName Room
@@ -26,6 +27,10 @@ public class RoomUser {
      * 删除状态
      */
     private Integer isDel;
+    /**
+     * 性别 1 男 2 女
+     */
+    private Integer userSex;
 
     /**
      * 用户姓名
@@ -54,8 +59,12 @@ public class RoomUser {
      */
 
     private Integer roomStatus;
+
     @TableField(exist = false)//表示该属性不为数据库表字段，但又是必须使用的。
     private String roomStatusShow;
+
+    @TableField(exist = false)//表示该属性不为数据库表字段，但又是必须使用的。
+    private List<RoomUser> roomUserList;
 
     public String getRoomStatusShow() {
         if(roomStatus==0){
@@ -84,7 +93,7 @@ public class RoomUser {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 前台接受字符串转成时间类型
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8") /* 只有把这个对象转为Json才生效返回 */
     private Date endTime;
-  /*  *//**
+    /*  *//**
      * '入住时间'
      *//*
 
