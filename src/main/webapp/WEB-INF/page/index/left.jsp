@@ -23,11 +23,10 @@
 </c:if>
 <br/><br/>
 <%--老板可看--%>
-<c:if test="${user.id==1}">
-
+    <a href="<%=request.getContextPath()%>/room/toRoomUserShow" target="right"><h1>用户入住信息</h1></a>
 <br/><br/>
 <div id="demotree" class="ztree"></div>
-</c:if>
+
 </body>
 <script>
 

@@ -5,6 +5,7 @@ import com.dj.demo.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -18,10 +19,19 @@ public class RoomPageController {
     @Autowired
     private RoomService roomService;
 
+    @RequestMapping("toRoomUserShow")
+    public String toRoomUserShow(){
+        return "room/room_user_show";
+    }
+
     @RequestMapping("toShow")
     public String toShow(){
         return "room/show";
     }
 
-
+    @RequestMapping("toUserShow/{room}")
+    public String toUserShow(@PathVariable("room") String room, Model model){
+            model.addAttribute("room",room);
+        return "room/user_show";
+    }
 }

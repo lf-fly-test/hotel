@@ -68,7 +68,12 @@
                     if (level == 2 && list.roomStatus==1){
                         html+="<td><input type='button' value='审核' onclick='audit("+list.id+")'></td>";
                     }
-
+                    if (level == 2 ){
+                        html+="<td><input type='button' value='详情' onclick='chakan("+list.room+")'></td>";
+                    }
+                    if (level == 2 ){
+                        html+="<td><input type='button' value='退房' onclick='updel("+list.id+","+list.room+")'></td>";
+                    }
 
                     html +="</tr>";
                 }
@@ -95,6 +100,32 @@
             function (data) {
                 if(data.code==200){
                     layer.msg("审核成功");
+                    search();
+                }else{
+                    layer.msg(data.msg);
+                }
+
+            })
+
+    }
+    //详情
+    function chakan(room){
+        layer.open({
+            type: 2,
+            title: '添加页面',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['380px', '90%'],
+            content: '<%=request.getContextPath()%>/room/toUserShow/'+room
+        });
+    }
+    //退房
+    function updel(id,room) {
+        $.post("<%=request.getContextPath()%>/roomUser/update",
+            {"id":id,"room":room},
+            function (data) {
+                if(data.code==200){
+                    layer.msg("退房成功");
                     search();
                 }else{
                     layer.msg(data.msg);
