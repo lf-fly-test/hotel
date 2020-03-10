@@ -66,6 +66,9 @@
                         if (level==1 && list.roomStatus==0){
                             html+="<td><input type='button' value='预约' onclick='subscribe("+list.id+")'></td>";
                         }
+                        if (level==1 && list.roomStatus==2){
+                            html+="<td><input type='button' value='退房' onclick='quit("+list.id+")'></td>";
+                        }
 
                         if (level == 2 && list.roomStatus==1){
                             html+="<td><input type='button' value='审核' onclick='audit("+list.id+")'></td>";
@@ -91,7 +94,20 @@
         })
 
     }
-    function audit(id) {
+    function quit(id) {
+        $.post("<%=request.getContextPath()%>/room/updateStatus",
+            {"id":id,"roomStatus":0},
+            function (data) {
+                if(data.code==200){
+                    layer.msg("退房成功,欢迎下次光临");
+                    search();
+                }else{
+                    layer.msg(data.msg);
+                }
+
+            })
+
+    }  function audit(id) {
         $.post("<%=request.getContextPath()%>/room/updateStatus",
             {"id":id,"roomStatus":2},
             function (data) {
