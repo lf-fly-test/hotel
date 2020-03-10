@@ -193,15 +193,15 @@
 </head>
 <body>
 <form id="fm">
-    姓名<input type="text" name="userName" id="userName" /><br>
-    密码<input type="text" name="userPwd" id="pwd"/><br>
-    确认密码<input type="text" name="userPwd1" /><br><br>
-    手机<input type="text" name="userPhone" id="userPhone" /><br>
-    邮箱<input type="text" name="userEmail" id="email"/><br><br>
-    角色<br>
-    <input type="radio" name="userLevel" value="2" >管理员
+    姓    名:<input type="text" name="userName" id="userName" /><br>
+    密    码:<input type="text" name="userPwd" id="pwd"/><br>
+    确认密码:<input type="text" name="userPwd1" /><br><br>
+    手    机:<input type="text" name="userPhone" id="userPhone" /><br>
+    邮    箱:<input type="text" name="userEmail" id="email"/><br><br>
+    角    色:管理员<br>
+    <input type="hidden" name="userLevel" value="2" >
     <div id="levelError" class="error" ></div><br><br>
-    性别<br>
+    性    别:
     <input type="radio" name="userSex" value="1" checked>男
     <input type="radio" name="userSex" value="2">女
     <div id="sex" class="error" ></div>
