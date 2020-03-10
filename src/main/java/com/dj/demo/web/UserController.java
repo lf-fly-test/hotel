@@ -194,7 +194,13 @@ public class UserController {
         }
         queryWrapper.eq("is_del",SystemConstant.IS_NOT_DEL)
                 .ne("user_level", SystemConstant.LEVEL_ADMINISTRATOR)
-                .orderByDesc("user_level").orderByAsc("user_level");
+                .orderByDesc("user_level").orderByAsc("is_vip");
+        if (user.getUserLevel() == SystemConstant.LEVEL_MANAGER){
+            queryWrapper.eq("id", user.getId()).or().eq("user_level", SystemConstant.LEVEL_EMPLOYEE);
+        }
+        if (user.getUserLevel() == SystemConstant.LEVEL_MANAGER){
+            queryWrapper.eq("id", user.getId()).or().eq("user_level", SystemConstant.LEVEL_EMPLOYEE);
+        }
         if (!StringUtils.isEmpty(query)){
             queryWrapper.and(i -> i.like("user_name",query)
                     .or().like("user_phone",query)

@@ -57,19 +57,19 @@ public class SystemConstant {
     public static final Integer IS_DEL = 0;
 
     /**
-     * 职位2普通员工
+     * 职位1普通员工
      */
-    public static final Integer LEVEL_EMPLOYEE = 2;
+    public static final Integer LEVEL_EMPLOYEE = 1;
 
     /**
-     * 职位3经理
+     * 职位2管理员
      */
-    public static final Integer LEVEL_MANAGER = 3;
+    public static final Integer LEVEL_MANAGER = 2;
 
     /**
-     * 职位4管理员
+     * 职位3老板
      */
-    public static final Integer LEVEL_ADMINISTRATOR = 4;
+    public static final Integer LEVEL_ADMINISTRATOR = 3;
 
 
     /**
