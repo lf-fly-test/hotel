@@ -31,7 +31,13 @@ public class RoomPageController {
 
     @RequestMapping("toUserShow/{room}")
     public String toUserShow(@PathVariable("room") String room, Model model){
-            model.addAttribute("room",room);
+        model.addAttribute("room",room);
         return "room/user_show";
+    }
+
+    @RequestMapping("toAdd/{id}")
+    public String toAdd(@PathVariable("id") Integer id, Model model){
+        model.addAttribute("id",id);
+        return "room/add";
     }
 }
