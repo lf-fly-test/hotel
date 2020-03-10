@@ -161,7 +161,7 @@
                 shade: [0.8, '#393D49']
             }, function () {
                 //do something
-                $.post("<%=request.getContextPath()%>/user/add ",
+                $.post("<%=request.getContextPath()%>/user/addAdmin ",
                     $("#fm").serialize(),
                     function (data) {
                         layer.close(index);

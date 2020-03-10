@@ -62,12 +62,12 @@ public class SystemConstant {
     public static final Integer LEVEL_EMPLOYEE = 2;
 
     /**
-     * 职位3经理
+     * 职位3管理
      */
     public static final Integer LEVEL_MANAGER = 3;
 
     /**
-     * 职位4管理员
+     * 职位4老板
      */
     public static final Integer LEVEL_ADMINISTRATOR = 4;
 
@@ -147,5 +147,16 @@ public class SystemConstant {
      * 验证码已过期,请重新获取
      */
     public static final String PAST_DUE  = "验证码已过期,请重新获取";
+
+    /***
+     *  任命
+     */
+    public static final Integer STATUS_APPOINT = 1;
+
+    /***
+     *  任命
+     */
+    public static final Integer STATUS_NOT_APPOINT = 2;
+
 
 }

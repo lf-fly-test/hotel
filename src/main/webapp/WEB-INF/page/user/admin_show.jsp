@@ -17,7 +17,10 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/res/validate/messages_zh.js"></script>
 </head>
 <body>
-<input type="button" value="添加管理员" onclick="add()"/>
+<c:if test="${user.userLevel == 3}">
+    <input type="button" value="添加管理员" onclick="add()"/>
+</c:if>
+查询:<input type="text" name="query" onblur="query()"/>
 <table border="1px">
     <tr>
         <th>编号</th>
@@ -26,7 +29,8 @@
         <th>电话</th>
         <th>邮箱</th>
         <th>性别</th>
-        <th>状态</th>
+        <th>会员</th>
+        <th>管理</th>
         <th>操作</th>
     </tr>
     <tbody id="tbd"></tbody>
@@ -37,32 +41,39 @@ $(function(){
     search();
 })
     function search() {
+    alert($("input[name='query']").val());
         $.post(
             "${ctx}/user/adminShow",
-            {},
+            {"query":$("input[name='query']").val()},
             function(data){
+                var html = "";
                 for (var i = 0; i<data.data.length; i++){
                     var user = data.data[i];
-                    var html = "";
                     html += "<tr>";
                     html += "<th>"+user.id+"</th>";
                     html += "<th>"+user.userName+"</th>";
-                    html += "<th>管理员</th>";
+                    html += user.userLevel == 3?"<th>管理员</th>":"<th>用户</th>";
                     html += "<th>"+user.userPhone+"</th>";
                     html += "<th>"+user.userEmail+"</th>";
-                    html += user.userSex == 1?"<th>男</th>":"<th><女/th>";
-                    html += user.isDel == 1?"<th>任命</th>":"<th>撤职</th>";
+                    html += user.userSex == 1?"<th>男</th>":"<th>女</th>";
+                    html += user.isVip == 1?"<th>会员</th>":"<th>非会员</th>";
+                    html += user.status == 1?"<th>任命</th>":"<th>撤职</th>";
                     html += "<th>";
-                    if (user.isDel == 1){
-                        html += "<input type='button' value='撤职' onclick='userStatus("+user.id+",2)'/>";
-                    }else {
-                        html += "<input type='button' value='任命' onclick='userStatus("+user.id+",1)'/>";
+                    if (${user.userLevel == 4}){
+                        if (user.status == 1){
+                            html += "<input type='button' value='撤职' onclick='userStatus("+user.id+",2,"+user.userLevel+")'/>";
+                        }else {
+                            html += "<input type='button' value='任命' onclick='userStatus("+user.id+",1,"+user.userLevel+")'/>";
+                        }
                     }
-                    html += "</th>";
+                    html += "</tr>";
                 }
                 $("#tbd").html(html);
             }
         );
+    }
+    function query() {
+        search();
     }
 function add(){
     layer.open({
@@ -77,11 +88,11 @@ function add(){
         content: '<%=request.getContextPath()%>/user/toAdminAdd' //iframe的url
     });
 }
-function userStatus(id,isDel) {
+function userStatus(id,status,userLevel) {
     var index = layer.load(2, {shadeClose: false,shade: 0.5});
     $.post(
         "${ctx}/user/updateAdminStatus",
-        {"isDel":isDel,"id":id},
+        {"status":status,"id":id,"userLevel":userLevel},
         function (data) {
             layer.close(index);
             if (data.code == -1) {
