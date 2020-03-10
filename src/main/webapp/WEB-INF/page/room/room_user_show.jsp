@@ -41,6 +41,7 @@
                     html += "<input type = 'hidden' id = '"+list.id+"' value = '"+list.isDel+"'/>"
                     html += "</td>";
                     html += "<td>"+list.id+"</td>";
+                    html += list.userSex ==1 ? "<td>男</td>" : "<td>女</td>";
                     html += "<td>"+list.userName+"</td>";
                     html += "<td>"+list.room+"</td>";
                     html += "<td>"+list.roomType+"</td>";
@@ -170,6 +171,7 @@
         <th >√</th>
         <th >编号</th>
         <th >入住人员名称</th>
+        <th >性别</th>
         <th >房间号</th>
         <th >房间类型</th>
         <th >入住状态</th>
