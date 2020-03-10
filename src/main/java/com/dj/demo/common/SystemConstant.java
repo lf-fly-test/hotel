@@ -148,4 +148,13 @@ public class SystemConstant {
      */
     public static final String PAST_DUE  = "验证码已过期,请重新获取";
 
+    /***
+     *  任命
+     */
+    public static final Integer STATUS_APPOINT = 1;
+
+    /***
+     *  撤职
+     */
+    public static final Integer STATUS_NOT_APPOINT = 2;
 }

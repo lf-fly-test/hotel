@@ -52,6 +52,21 @@ public class UserPageController {
         return "user/phone";
     }
 
+    /***
+     * 去用户展示页
+     */
+    @RequestMapping("toAdminShow")
+    public String toAdminShow(){
+        return "user/show";
+    }
+
+    /***
+     * 去添加管理员页面
+     */
+    @RequestMapping("toAdminAdd")
+    public String toAdminAdd(){
+        return "user/add_admin";
+    }
 
 
 

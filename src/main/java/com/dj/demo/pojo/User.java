@@ -101,4 +101,12 @@ public class User {
      * @date 2020/3/7--20:8
      */
     private String code;
+
+    /***
+     * @Description: //1:任命,2:撤职
+     * @Author: bj-lx
+     * @Date: 2020/3/8
+     */
+    private Integer status;
+
 }

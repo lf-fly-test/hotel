@@ -26,7 +26,7 @@
     <a href="<%=request.getContextPath()%>/room/toRoomUserShow" target="right"><h1>用户入住信息</h1></a>
 <br/><br/>
 <div id="demotree" class="ztree"></div>
-
+<a href="<%=request.getContextPath()%>/user/toAdminShow" target="right">用户信息管理</a>
 </body>
 <script>
 

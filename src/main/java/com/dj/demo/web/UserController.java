@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName UserController
@@ -181,5 +182,34 @@ public class UserController {
         }
         userService.updateById(user1);
         return new ResultModel<>().success(com.dj.demo.common.SystemConstant.SUCCESS);
+    }
+
+    @RequestMapping("adminShow")
+    public ResultModel<Object> adminShow(String query, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        if (user.getUserLevel() == SystemConstant.LEVEL_EMPLOYEE){
+            List<User> userList = userService.list(queryWrapper.eq("id",user.getId()));
+            return new ResultModel<>().success(userList);
+        }
+        queryWrapper.eq("is_del",SystemConstant.IS_NOT_DEL)
+                .ne("user_level", SystemConstant.LEVEL_ADMINISTRATOR)
+                .orderByDesc("user_level").orderByAsc("user_level");
+        if (!StringUtils.isEmpty(query)){
+            queryWrapper.and(i -> i.like("user_name",query)
+                    .or().like("user_phone",query)
+                    .or().like("user_email",query));
+        }
+        List<User> userList = userService.list(queryWrapper);
+        return new ResultModel<>().success(userList);
+    }
+
+    @RequestMapping("updateAdminStatus")
+    public ResultModel<Object> updateAdminStatus (User user){
+        if (user.getUserLevel() != SystemConstant.LEVEL_MANAGER){
+            user.setUserLevel(SystemConstant.LEVEL_MANAGER);
+        }
+        userService.updateById(user);
+        return new ResultModel<>().success();
     }
 }
