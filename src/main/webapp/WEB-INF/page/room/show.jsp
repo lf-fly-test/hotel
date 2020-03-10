@@ -68,11 +68,14 @@
                     if (level == 2 && list.roomStatus==1){
                         html+="<td><input type='button' value='审核' onclick='audit("+list.id+")'></td>";
                     }
-                    if (level == 2 ){
+                    if (level != 1 ){
                         html+="<td><input type='button' value='详情' onclick='chakan("+list.room+")'></td>";
                     }
-                    if (level == 2 ){
+                    if (level != 1  && list.roomStatus==2 ){
                         html+="<td><input type='button' value='退房' onclick='updel("+list.id+","+list.room+")'></td>";
+                    }
+                    if (level != 1   && list.roomStatus==2 ){
+                        html+="<td><input type='button' value='添加' onclick='adds("+list.id+","+list.room+")'></td>";
                     }
 
                     html +="</tr>";
@@ -115,7 +118,7 @@
             title: '添加页面',
             shadeClose: true,
             shade: 0.8,
-            area: ['380px', '90%'],
+            area: ['500px', '90%'],
             content: '<%=request.getContextPath()%>/room/toUserShow/'+room
         });
     }
@@ -133,6 +136,18 @@
 
             })
 
+    }
+
+    //添加人员信息
+    function adds(id){
+        layer.open({
+            type: 2,
+            title: '添加页面',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['500px', '90%'],
+            content: '<%=request.getContextPath()%>/room/toAdd/'+id
+        });
     }
 
 </script>
