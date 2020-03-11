@@ -25,6 +25,7 @@
 <%--老板可看--%>
     <a href="<%=request.getContextPath()%>/room/toRoomUserShow" target="right"><h1>用户入住信息</h1></a>
 <br/><br/>
+<a href="<%=request.getContextPath()%>/user/toShow" target="right"><h1>会员增加</h1></a>
 <div id="demotree" class="ztree"></div>
 <a href="<%=request.getContextPath()%>/user/toAdminShow" target="right">用户信息管理</a>
 </body>
