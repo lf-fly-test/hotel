@@ -58,7 +58,7 @@
                     html += user.isVip == 1?"<th>会员</th>":"<th>非会员</th>";
                     html += user.status == 1?"<th>已任命</th>":"<th>已撤职</th>";
                     html += "<th>";
-                    if (${user.userLevel == 4}){
+                    if (${user.userLevel == 3}){
                         if (user.status == 1){
                             html += "<input type='button' value='撤职' onclick='userStatus("+user.id+",2,"+user.userLevel+")'/>";
                         }else {
