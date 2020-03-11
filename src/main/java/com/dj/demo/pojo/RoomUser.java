@@ -43,6 +43,8 @@ public class RoomUser {
      */
     private String room;
 
+    @TableField(exist = false)//表示该属性不为数据库表字段，但又是必须使用的。
+    private String room1;
     /***
      * @MethodName: 房间类型
      * @Author: bj-lx
