@@ -24,6 +24,7 @@ public class Room {
      */
     private String room;
 
+
     /***
      * @MethodName: 房间类型
      * @Author: bj-lx
