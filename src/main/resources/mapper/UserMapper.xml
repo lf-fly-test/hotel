@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dj.demo.mapper.UserMapper">
+
+    <sql id="USERCOLUMN">
+        id,
+        user_name,
+        user_pwd,
+        user_level,
+        user_phone,
+        user_email,
+        user_sex,
+        is_vip,
+        vip_level,
+        vip_points,
+        is_del,
+        status,
+        code
+    </sql>
+
+    <!--办理会员-->
+    <update id="applyForMembership">
+        update hotel_user
+        <set>
+            is_vip = 1,
+            <if test="vipLevel == 1">
+                vip_points = 10000,
+                vip_level = 1
+            </if>
+            <if test="vipLevel == 2">
+                vip_points = 20000,
+                vip_level = 2
+            </if>
+            <if test="vipLevel == 3">
+                vip_points = 30000,
+                vip_level = 3
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+
+
+</mapper>

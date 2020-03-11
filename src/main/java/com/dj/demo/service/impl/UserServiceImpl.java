@@ -1,5 +1,6 @@
 package com.dj.demo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dj.demo.mapper.UserMapper;
 import com.dj.demo.pojo.User;
@@ -19,4 +20,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private UserMapper userMapper;
+
+    @Override
+    public void applyForMembership(User user) throws Exception {
+        userMapper.applyForMembership(user);
+    }
+
+    @Override
+    public User findById(Integer id) throws Exception {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id", id);
+        User user = this.getOne(queryWrapper);
+        return user;
+    }
 }

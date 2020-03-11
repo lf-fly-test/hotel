@@ -148,6 +148,9 @@
         用户姓名：<input type="text" name="userName">
         房间号：<input type="text" name="room"><br>
 
+
+
+
         <%--入住时间
 
         <input type="text" id="d241" name="agemin" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH-mm-ss'})" class="Wdate" style="width:300px"/>

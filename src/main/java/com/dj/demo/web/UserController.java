@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @ClassName UserController
@@ -218,4 +216,34 @@ public class UserController {
         userService.updateById(user);
         return new ResultModel<>().success();
     }
+
+    @RequestMapping("show")
+    public ResultModel<Object> show(){
+        Map map = new HashMap();
+        try {
+            List<User> userList = userService.list();
+            map.put("userList", userList);
+            return new ResultModel<>().success(map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultModel<>().error(SystemConstant.ERROR + e.getMessage());
+        }
+    }
+
+    /**
+     * 办理会员
+     * @return
+     */
+    @RequestMapping("applyForMembership")
+    public ResultModel<Object> applyForMembership(User user){
+        try {
+            userService.applyForMembership(user);
+            return new ResultModel<>().success("办理成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultModel().error("服务器异常"+e.getMessage());
+        }
+    }
+
+
 }
