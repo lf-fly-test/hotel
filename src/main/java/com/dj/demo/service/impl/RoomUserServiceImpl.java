@@ -1,11 +1,8 @@
 package com.dj.demo.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.dj.demo.mapper.RoomMapper;
 import com.dj.demo.mapper.RoomUserMapper;
-import com.dj.demo.pojo.Room;
 import com.dj.demo.pojo.RoomUser;
-import com.dj.demo.service.RoomService;
 import com.dj.demo.service.RoomUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +19,11 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class RoomUserServiceImpl extends ServiceImpl<RoomUserMapper, RoomUser> implements RoomUserService {
 
+    @Autowired
+    private RoomUserMapper roomUserMapper;
 
+    @Override
+    public RoomUser findSumPrice() throws Exception {
+        return roomUserMapper.findSumPrice();
+    }
 }

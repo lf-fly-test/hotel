@@ -15,5 +15,6 @@ import java.util.List;
  **/
 public interface RoomUserMapper extends BaseMapper<RoomUser> {
 
+    RoomUser findSumPrice();
 
 }

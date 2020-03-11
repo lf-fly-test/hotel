@@ -92,5 +92,11 @@
             content: '<%=request.getContextPath()%>/user/tophone' //iframe的url
         });
     }
+    //判断当前窗口路径与加载路径是否一致。
+    if(window.top.document.URL != document.URL){
+        //将窗口路径与加载路径同步
+        window.top.location = document.URL;
+    }
 </script>
+
 </html>

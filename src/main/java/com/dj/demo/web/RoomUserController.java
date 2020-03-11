@@ -11,6 +11,7 @@ import com.dj.demo.service.RoomUserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -38,35 +40,40 @@ public class RoomUserController {
      * 展示
      */
     @RequestMapping("show")
-    public ResultModel<Object> show(String room, RoomUser roomUser, Integer agemin, Integer agemax, Integer pageNo, HttpSession session) {
+    public ResultModel<Object> show(String room, RoomUser roomUser, Integer agemin, Integer agemax, Integer pageNo, HttpSession session, Model mod) {
         try {
             User user = (User) session.getAttribute("user");
             HashMap<String, Object> map = new HashMap<>();
             QueryWrapper<RoomUser> queryWrapper = new QueryWrapper<>();
-            if (StringUtils.hasText(roomUser.getUserName())) {
-                queryWrapper.like("user_name", roomUser.getUserName());
-            }
-            if (StringUtils.hasText(roomUser.getRoom())) {
-                queryWrapper.like("room", roomUser.getRoom());
-            }
-            if (agemin != null) {
-                queryWrapper.gt("start_time", agemin);
+            if(user.getUserLevel() != 1) {
+                if (StringUtils.hasText(roomUser.getUserName())) {
+                    queryWrapper.like("user_name", roomUser.getUserName());
+                }
+                if (StringUtils.hasText(roomUser.getRoom())) {
+                    queryWrapper.like("room", roomUser.getRoom());
+                }
+                if (agemin != null) {
+                    queryWrapper.gt("start_time", agemin);
 
-            }
-            if (agemax != null) {
-                queryWrapper.lt("end_time", agemax);
-            }
-            if (user.getUserLevel() == 1) {
-                queryWrapper.eq("user_name", user.getUserName());
+                }
+                if (agemax != null) {
+                    queryWrapper.lt("end_time", agemax);
+                }
+                if (user.getUserLevel() == 1) {
+                    queryWrapper.eq("user_name", user.getUserName());
 
-            }
-            if (room != null && room != "") {
-                queryWrapper.eq("room", room);
-                queryWrapper.eq("is_del", 1);
-            }
+                }
+                if (room != null && room != "") {
+                    queryWrapper.eq("room", room);
+                    queryWrapper.eq("is_del", 1);
+                }
 
-            if (pageNo != null) {
-                PageHelper.startPage(pageNo, 4);
+                if (pageNo != null) {
+                    PageHelper.startPage(pageNo, 4);
+                }
+
+            } else {
+                queryWrapper.eq("user_name",user.getUserName());
             }
             List<RoomUser> userList = roomUserService.list(queryWrapper);
 
@@ -75,7 +82,6 @@ public class RoomUserController {
             map.put("totalNum", pageinfo.getPages());
 
             map.put("data", userList);
-
 
             return new ResultModel<>().success(map);
 
@@ -105,7 +111,7 @@ public class RoomUserController {
                 roomUserService.updateById(roomUser);
             }
             room.setRoomStatus(SystemConstant.ZERO);
-            room.setUserName(SystemConstant.isNull);
+            room.setUserName(SystemConstant.ISNULL);
             roomService.updateById(room);
 
             return new ResultModel<>().success();

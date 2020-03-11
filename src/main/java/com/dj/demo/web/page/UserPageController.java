@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @ClassName UserPageController
  * @Description: TODO
@@ -68,7 +70,11 @@ public class UserPageController {
         return "user/add_admin";
     }
 
-
+    @RequestMapping("exitLoginUser")
+    public String exitLoginUser (HttpSession session){
+        session.invalidate();
+        return "user/login";
+    }
 
 
 }

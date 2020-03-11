@@ -13,13 +13,13 @@ public class JavaEmailUtils {
 	// 发件人的中文昵称
 	private static final String nickname = "dj";
 	// 发件人邮箱
-	private static final String username = "w1276175774@163.com";
+	private static final String username = "1276175774@qq.com";
 	// 发件人在邮箱服务器中的授权码
-	private static final String password = "w1276175774";
+	private static final String password = "ftcuxswduhfygbae";
 	// 邮件的发送协议
 	private static final String protocol = "smtp";
 	// 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般格式为: smtp.xxx.com
-	private static final String host = "smtp.163.com";
+	private static final String host = "smtp.qq.com";
 	// 邮件的监听端口号
 	private static final String port = "25";
 

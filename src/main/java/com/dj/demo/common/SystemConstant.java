@@ -160,5 +160,5 @@ public class SystemConstant {
     /***
      *  无人入住
      */
-    public static final String isNull = "无人入住";
+    public static final String ISNULL = "无人入住";
 }

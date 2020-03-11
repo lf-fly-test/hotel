@@ -82,6 +82,7 @@ public class RoomController {
             roomUser.setRoomStatus(SystemConstant.LEVEL_EMPLOYEE);
             roomUser.setIsDel(SystemConstant.IS_NOT_DEL);
             roomUser.setUserSex(User1.getUserSex());
+            roomUser.setPrice(room1.getRoomPrice());
             roomUserService.save(roomUser);
 
 

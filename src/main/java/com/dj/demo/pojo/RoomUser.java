@@ -52,6 +52,12 @@ public class RoomUser {
     private String roomType;
 
     /***
+     * @Author: bj-lx
+     * @Date: 2020/3/11
+     */
+    private Double price;
+
+    /***
      * @MethodName: 房间状态
      * @Description: // 0空闲  1：预约中  2：预约成功 ，已入住
      * @Author: bj-lx

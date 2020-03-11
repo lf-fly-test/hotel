@@ -45,6 +45,7 @@
                     html += "<td>"+list.userName+"</td>";
                     html += "<td>"+list.room+"</td>";
                     html += "<td>"+list.roomType+"</td>";
+                    html += "<td>"+list.price+"</td>";
                     html += "<td>"+list.roomStatusShow+"</td>";
                     html += "<td>"+list.startTime+"</td>";
 
@@ -144,9 +145,7 @@
 
     <div align="center">
 
-
-
-        用户姓名：<input type="text" name="userName"><br>
+        用户姓名：<input type="text" name="userName">
         房间号：<input type="text" name="room"><br>
 
         <%--入住时间
@@ -174,6 +173,7 @@
         <th >性别</th>
         <th >房间号</th>
         <th >房间类型</th>
+        <th>金额</th>
         <th >入住状态</th>
         <th >入住时间</th>
         <th >退房时间</th>

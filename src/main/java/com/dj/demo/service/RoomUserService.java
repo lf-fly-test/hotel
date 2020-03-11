@@ -14,5 +14,5 @@ import java.util.List;
  **/
 public interface RoomUserService extends IService<RoomUser> {
 
-
+    RoomUser findSumPrice() throws Exception;
 }
