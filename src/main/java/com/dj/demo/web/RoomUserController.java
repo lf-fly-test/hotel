@@ -105,7 +105,7 @@ public class RoomUserController {
                 roomUserService.updateById(roomUser);
             }
             room.setRoomStatus(SystemConstant.ZERO);
-            room.setUserName(SystemConstant.isNull);
+            room.setUserName(SystemConstant.ISNULL);
             roomService.updateById(room);
 
             return new ResultModel<>().success();
