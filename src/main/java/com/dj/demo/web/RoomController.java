@@ -79,7 +79,7 @@ public class RoomController {
             roomUser.setRoomType(room1.getRoomType());
             roomUser.setStartTime(new Date());
             roomUser.setEndTime(null);
-            roomUser.setRoomStatus(SystemConstant.LEVEL_EMPLOYEE);
+            roomUser.setRoomStatus(SystemConstant.STATUS_NOT_APPOINT);
             roomUser.setIsDel(SystemConstant.IS_NOT_DEL);
             roomUser.setUserSex(User1.getUserSex());
             roomUserService.save(roomUser);

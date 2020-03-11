@@ -115,7 +115,7 @@
     function chakan(room){
         layer.open({
             type: 2,
-            title: '添加页面',
+            title: '页面',
             shadeClose: true,
             shade: 0.8,
             area: ['500px', '90%'],

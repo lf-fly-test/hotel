@@ -38,7 +38,7 @@ public class RoomUserController {
      * 展示
      */
     @RequestMapping("show")
-    public ResultModel<Object> show(String room, RoomUser roomUser, Integer agemin, Integer agemax, Integer pageNo, HttpSession session) {
+    public ResultModel<Object> show(String room1, RoomUser roomUser, Integer agemin, Integer agemax, Integer pageNo, HttpSession session) {
         try {
             User user = (User) session.getAttribute("user");
             HashMap<String, Object> map = new HashMap<>();
@@ -46,8 +46,8 @@ public class RoomUserController {
             if (StringUtils.hasText(roomUser.getUserName())) {
                 queryWrapper.like("user_name", roomUser.getUserName());
             }
-            if (StringUtils.hasText(roomUser.getRoom())) {
-                queryWrapper.like("room", roomUser.getRoom());
+            if (StringUtils.hasText(room1)) {
+                queryWrapper.like("room", room1);
             }
             if (agemin != null) {
                 queryWrapper.gt("start_time", agemin);
@@ -60,8 +60,8 @@ public class RoomUserController {
                 queryWrapper.eq("user_name", user.getUserName());
 
             }
-            if (room != null && room != "") {
-                queryWrapper.eq("room", room);
+            if (roomUser.getRoom() != null && roomUser.getRoom()  != "") {
+                queryWrapper.eq("room", roomUser.getRoom());
                 queryWrapper.eq("is_del", 1);
             }
 
