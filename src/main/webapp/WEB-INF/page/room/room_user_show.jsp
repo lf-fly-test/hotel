@@ -147,7 +147,7 @@
 
 
         用户姓名：<input type="text" name="userName"><br>
-        房间号：<input type="text" name="room"><br>
+        房间号：<input type="text" name="room1"><br>
 
         <%--入住时间
 
