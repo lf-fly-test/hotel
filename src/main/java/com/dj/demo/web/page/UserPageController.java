@@ -1,8 +1,10 @@
 package com.dj.demo.web.page;
 
+import com.dj.demo.pojo.User;
 import com.dj.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -69,6 +71,19 @@ public class UserPageController {
     }
 
 
+    @RequestMapping("toShow")
+    public String toShow(){
+        return "user/show_user";
+    }
+
+    @RequestMapping("toApplyForMembership")
+    public String toApplyForMembership(Integer id, Model model) throws Exception {
+
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+
+        return  "user/applyForMembership";
+    }
 
 
 }
